@@ -16,14 +16,11 @@ export async function POST(req: NextRequest) {
   const newChat: Omit<Chat, 'id'> = await req.json();
   const chatWithId: Chat = { ...newChat, id: uuidv4() };
 
-  // Read existing data
   const fileData = fs.readFileSync(filePath, 'utf8');
   const chats: Chat[] = JSON.parse(fileData);
 
-  // Add new chat
   chats.push(chatWithId);
 
-  // Write updated data
   fs.writeFileSync(filePath, JSON.stringify(chats, null, 2));
 
   return NextResponse.json(chatWithId, { status: 201 });

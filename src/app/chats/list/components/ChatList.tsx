@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Skeleton } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 interface Chat {
@@ -13,7 +13,9 @@ interface Chat {
 
 export default function ChatList() {
   const [chats, setChats] = useState<Chat[]>([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+
   useEffect(() => {
     const fetchChats = async () => {
       const response = await fetch("/api/chats");
@@ -23,6 +25,7 @@ export default function ChatList() {
       } else {
         console.error("Failed to fetch chats");
       }
+      setLoading(false);
     };
     fetchChats();
   }, []);
@@ -34,8 +37,21 @@ export default function ChatList() {
   };
 
   return (
-    <Stack gap={2} p={2} overflow="auto">
-      {chats.length > 0 ? (
+    <Stack gap={2} p={2} overflow="auto" height="100%">
+      {loading ? (
+        <Stack p={2} gap={2} overflow="auto">
+          {Array.from(new Array(3)).map((_, index) => (
+            <Skeleton
+              key={index}
+              variant="rounded"
+              width={300}
+              height={100}
+              sx={{ bgcolor: "grey.400" }}
+              animation="wave"
+            />
+          ))}
+        </Stack>
+      ) : chats.length > 0 ? (
         chats.map((chat) => (
           <Stack
             key={chat.id}
@@ -55,7 +71,15 @@ export default function ChatList() {
           </Stack>
         ))
       ) : (
-        <Typography>No chats available</Typography>
+        <Stack
+          height="100%"
+          p={2}
+          gap={2}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography>No chats available</Typography>
+        </Stack>
       )}
     </Stack>
   );
