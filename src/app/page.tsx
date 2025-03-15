@@ -1,8 +1,6 @@
-import { Stack } from "@mui/material";
-
+"use client";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <Stack>welcome</Stack>
-  );
+  redirect("/chats");
 }

@@ -11,7 +11,7 @@ export default function SignIn() {
                 <TextField label='username' />
                 <TextField label='password' /></Stack>
             <Stack gap={2} alignItems='center'>
-                <Button variant="contained" fullWidth onClick={() => router.push('/chats')}>Login</Button>
+                <Button variant="contained" fullWidth onClick={() => router.push('/')}>Login</Button>
                 <Button variant="text" fullWidth onClick={() => router.push('/auth/signup')}>
                     I don&apos;t have an account
                 </Button>
