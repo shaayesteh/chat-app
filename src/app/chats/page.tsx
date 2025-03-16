@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import ChatList from "./list/components/ChatList";
 import { useRouter } from "next/navigation";
 
