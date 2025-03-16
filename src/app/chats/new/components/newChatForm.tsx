@@ -42,15 +42,16 @@ export default function NewChatForm() {
   const description = watch("description", "");
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const chatData = { ...data, createdAt: new Date().toISOString() };
     const response = await fetch("/api/chats", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(chatData),
     });
     if (response.ok) {
-      router.push("/chats");
+      router.push(`/chats/${(await response.json()).id}`);
     } else {
       alert("Failed to create chat");
     }

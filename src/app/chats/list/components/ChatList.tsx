@@ -9,6 +9,7 @@ interface Chat {
   title: string;
   category: string;
   description: string;
+  createdAt: string;
 }
 
 export default function ChatList() {
@@ -67,6 +68,16 @@ export default function ChatList() {
             </Typography>
             <Typography mt={2} variant="caption">
               {chat.category}
+            </Typography>
+            <Typography variant="caption" fontSize={10}>
+              {new Date(chat.createdAt).toLocaleString("en-US", {
+                month: "numeric",
+                day: "numeric",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              })}
             </Typography>
           </Stack>
         ))
