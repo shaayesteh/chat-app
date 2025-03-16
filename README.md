@@ -37,14 +37,20 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
 ## Features
 
-- Real-time messaging
+### Current Features
+
+- Submit a message containing title, category, and description
+- Display a list of chats
+- View chat description by clicking on a chat
+- Generate an ID and createdAt timestamp for each chat
+
+### Upcoming Features
+
 - User authentication
-- Responsive design
-- Emoji support
-- Message notifications
+- Send messages within a chat after creating it
+- Define roles with specific access permissions
 
 ## Learn More
 
