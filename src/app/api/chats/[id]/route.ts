@@ -4,8 +4,9 @@ import path from 'path';
 
 const filePath = path.resolve(process.cwd(), 'data', 'chats.json');
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(req: NextRequest) {
+  const id = req.nextUrl.pathname.split('/').pop();
+
   const fileData = fs.readFileSync(filePath, 'utf8');
   const chats = JSON.parse(fileData);
 
